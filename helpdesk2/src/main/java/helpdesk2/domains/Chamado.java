@@ -3,21 +3,27 @@ package helpdesk2.domains;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import helpdesk2.domains.enumns.Prioridade;
 import helpdesk2.domains.enumns.Status;
 
 public class Chamado {
 	private Long id;
 	private LocalDate data_abertura = LocalDate.now();
 	private LocalDate data_fechamento;
+	private Prioridade prioridade;
 	private Status status;
 	private String titulo;
 	private String observacoes;
 	private Tecnico tecnico;
 	private Cliente cliente;
 
-	public Chamado(Long id, Status status, String titulo, String observacoes, Tecnico tecnico, Cliente cliente) {
+	
+
+	public Chamado(Long id, Prioridade prioridade, Status status, String titulo, String observacoes, Tecnico tecnico,
+			Cliente cliente) {
 		super();
 		this.id = id;
+		this.prioridade = prioridade;
 		this.status = status;
 		this.titulo = titulo;
 		this.observacoes = observacoes;
@@ -104,6 +110,14 @@ public class Chamado {
 
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
+	}
+
+	public Prioridade getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(Prioridade prioridade) {
+		this.prioridade = prioridade;
 	}
 
 }
