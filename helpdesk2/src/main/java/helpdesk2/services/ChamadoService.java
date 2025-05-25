@@ -1,5 +1,6 @@
 package helpdesk2.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,11 @@ public class ChamadoService {
 		
 		return obj.orElseThrow(()-> new ObjectNotFundExeption("Objeto não encontrado id: "+id));
 		
+	}
+
+	public List<Chamado> findAll() {
+		
+		return repository.findAll();
 	}
 
 }
