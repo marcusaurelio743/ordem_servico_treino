@@ -3,6 +3,8 @@ package helpdesk2.services;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,16 @@ public class TecnicoService {
 				throw new DataIntegrityViolationException("Email Já cadastrado no Sistema!!");
 			}
 		
+	}
+
+	public Tecnico update(Long id, @Valid TecnicoDto objDto) {
+		objDto.setId(id);
+		Tecnico oldObj = findById(id);
+		validaPorCpfEmail(objDto);
+		oldObj = new Tecnico(objDto);
+		
+		
+		return repository.save(oldObj);
 	}
 
 }
