@@ -3,6 +3,8 @@ package helpdesk2.domains.dtos;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import helpdesk2.domains.Chamado;
@@ -17,11 +19,22 @@ public class ChamadoDto implements Serializable{
 	private LocalDate data_abertura = LocalDate.now();
 	@JsonFormat(pattern = "dd/M/yyyy")
 	private LocalDate data_fechamento;
+	@NotNull(message = "O campo Prioridade é requerido")
 	private Integer prioridade;
+	
+	@NotNull(message = "O campo Status é requerido")
 	private Integer status;
+	
+	@NotNull(message = "O campo Titulo é requerido")
 	private String titulo;
+	
+	@NotNull(message = "O campo Observações é requerido")
 	private String observacoes;
+	
+	@NotNull(message = "O campo Tecnico é requerido")
 	private Long tecnico;
+	
+	@NotNull(message = "O campo Cliente é requerido")
 	private Long cliente;
 	private String nomeTecnico;
 	private String nomeCliente;
