@@ -1,5 +1,6 @@
 package helpdesk2.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,9 @@ public class ChamadoService {
 		if(objDto.getId() != null) {
 			chamado.setId(objDto.getId());
 		}
+		if(objDto.getStatus().equals(2)) {
+			chamado.setData_fechamento(LocalDate.now());
+		}
 		
 		chamado.setTecnico(tecnico);
 		chamado.setCliente(cliente);
@@ -63,7 +67,18 @@ public class ChamadoService {
 		chamado.setTitulo(objDto.getTitulo());
 		chamado.setObservacoes(objDto.getObservacoes());
 		
+		
+		
 		return chamado;
+	}
+
+	public Chamado update(Long id, @Valid ChamadoDto objDto) {
+		objDto.setId(id);
+		
+		Chamado oldObjChamado = findById(id);
+		oldObjChamado = newChamado(objDto);
+		
+		return repository.save(oldObjChamado);
 	}
 
 }
